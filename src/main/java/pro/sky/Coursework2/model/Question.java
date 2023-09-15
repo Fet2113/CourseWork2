@@ -1,10 +1,10 @@
-package model;
+package pro.sky.Coursework2.model;
 
 import java.util.Objects;
 
 public class Question {
     private final String question;
-    private String answer;
+    private final String answer;
 
     public Question(String question, String answer) {
         this.question = question;

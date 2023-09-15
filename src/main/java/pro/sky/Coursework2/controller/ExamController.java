@@ -1,14 +1,13 @@
-package controller;
+package pro.sky.Coursework2.controller;
 
-import model.Question;
+import pro.sky.Coursework2.model.Question;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
-import service.ExaminerServiceImpl;
+import pro.sky.Coursework2.service.ExaminerServiceImpl;
 
 import java.util.Collection;
 
@@ -21,8 +20,9 @@ public class ExamController {
     public ExamController(ExaminerServiceImpl examinerService) {
         this.examinerService = examinerService;
     }
-@GetMapping
-public Collection<Question> getQuestion(@RequestParam int amaund) {
-        return examinerService.getQuestion(amaund);
+
+    @GetMapping
+    public Collection<Question> getQuestion(@RequestParam int amount) {
+        return examinerService.getQuestion(amount);
     }
 }

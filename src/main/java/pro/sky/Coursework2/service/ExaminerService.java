@@ -1,6 +1,6 @@
-package service;
+package pro.sky.Coursework2.service;
 
-import model.Question;
+import pro.sky.Coursework2.model.Question;
 
 import java.util.Collection;
 
