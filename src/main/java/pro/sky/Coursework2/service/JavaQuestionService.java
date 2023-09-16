@@ -1,6 +1,6 @@
 package pro.sky.Coursework2.service;
 
-import pro.sky.Coursework2.exeption.QuestionAlredyExeption;
+import pro.sky.Coursework2.exeption.QuestionAlreadyAddedException;
 import pro.sky.Coursework2.exeption.QuestionNotFoundExeption;
 import pro.sky.Coursework2.model.Question;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class JavaQuestionService implements QuestionService {
     public Question add(Question question) {
         for (Question q : questions) {
             if (q.equals(question)) {
-                throw new QuestionAlredyExeption();
+                throw new QuestionAlreadyAddedException();
             }
         }
         questions.add(question);
