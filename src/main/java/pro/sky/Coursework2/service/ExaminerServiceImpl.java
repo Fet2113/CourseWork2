@@ -10,21 +10,25 @@ import java.util.Set;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    private final QuestionService questionService;
+    private final QuestionService service;
 
-    public ExaminerServiceImpl(QuestionService questionService) {
-        this.questionService = questionService;
+    public ExaminerServiceImpl(QuestionService service) {
+        this.service = service;
     }
 
 
     @Override
-    public Collection<Question> getQuestion(int amound) {
-        if (amound < 0 || amound > questionService.getAll().size()) {
+    public Collection<Question> getQuestion(int amount) {
+        Collection<Question> allQQuestion = service.getAll();
+        if (service.getAll().size() < amount) {
             throw new AmountMoreThanRequiredException();
         }
-        Set<Question> exam = new HashSet<>();
-        while (exam.size() < amound) {
-            exam.add(questionService.getRandomQuestion());
+        if (allQQuestion.size() == amount){
+            return allQQuestion;
+        }
+        Set<Question> exam = new HashSet<>(amount);
+        while (exam.size() != amount) {
+            exam.add(service.getRandomQuestion());
 
         }
         return exam;

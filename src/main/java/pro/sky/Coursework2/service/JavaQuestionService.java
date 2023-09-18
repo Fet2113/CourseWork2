@@ -19,27 +19,24 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question add(Question question) {
-        for (Question q : questions) {
-            if (q.equals(question)) {
-                throw new QuestionAlreadyAddedException();
-            }
+        if (!questions.add(question)) {
+            throw new QuestionAlreadyAddedException();
         }
-        questions.add(question);
         return question;
     }
 
     @Override
     public Question remove(Question question) {
-        if (questions.contains(question)) {
-            questions.remove(question);
-            return question;
+        if (!questions.remove(question)) {
+            throw new QuestionNotFoundExeption();
         }
-        throw new QuestionNotFoundExeption();
+        return question;
     }
+
 
     @Override
     public Collection<Question> getAll() {
-        return new HashSet<>();
+        return Collections.unmodifiableSet(questions);
     }
 
     @Override
